@@ -28,7 +28,7 @@ wifi_password: "your_wifi_password"
 api_encryption_key: "api_key_found_in_esphome_webui"
 
 # ota password
-ota_password: "random_password"
+ota_password: "random_password_you_generate"
 ```
 
 Then you can use these secrets in YAML files like this:

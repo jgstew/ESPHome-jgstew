@@ -17,6 +17,8 @@ Configure WiFi and Home Assistant API keys in the secrets YAML file.
 
 In the [ESPHome Device Builder Add-On WebUI](http://homeassistant.local:8123/hassio/ingress/5c53de3b_esphome), click the `secrets` button in the top right.
 
+Find the value for `api_encryption_key` in the WebUI by clicking the 3 dots under one of the devices, then click "Show API Key" button. You need at least 1 devices to show up in the ESPHome Device builder for this option to appear.
+
 ```
 # Your Wi-Fi SSID and password
 wifi_ssid: "your_wifi_name"

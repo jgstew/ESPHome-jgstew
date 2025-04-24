@@ -1,7 +1,7 @@
 
 ## m5stack-atom-lite
 
-This folder is for YAML files for ESPHome for the m5stack-atom-lite
+This folder is for YAML files for ESPHome for the m5stack-atom-lite, which generally costs ~$7.50 but includes a nice enclosure.
 
 ## Related:
 

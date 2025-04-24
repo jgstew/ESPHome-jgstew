@@ -28,3 +28,16 @@ api_encryption_key: "api_key_found_in_esphome_webui"
 # ota password
 ota_password: "random_password"
 ```
+
+Then you can use these secrets in YAML files like this:
+
+```
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+```

@@ -1,5 +1,8 @@
 substitutions:
   name: esphome-c3mini-
+  # Recommend changing friendly_name to include location, like:
+  # Bluetooth Proxy Office
+  # Bluetooth Proxy Kitchen
   friendly_name: Bluetooth Proxy c3mini
 esphome:
   name: ${name}

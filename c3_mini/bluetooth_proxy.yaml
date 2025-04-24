@@ -1,6 +1,6 @@
 substitutions:
   name: esphome-c3mini-
-  friendly_name: Bluetooth Proxy
+  friendly_name: Bluetooth Proxy c3mini
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}

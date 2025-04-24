@@ -3,7 +3,7 @@ example yaml files for esphome devices
 
 Prerequisite:
 - Home Assistant
-- ESPHome Device Builder Add-On in Home Assistant
+- [ESPHome Device Builder Add-On](https://my.home-assistant.io/redirect/supervisor_addon/?addon=5c53de3b_esphome&repository_url=https%3A%2F%2Fgithub.com%2Fesphome%2Fhome-assistant-addon) in Home Assistant
 
 Use the [ESPHome Web Interface](https://web.esphome.io/?dashboard_wizard) on a computer with the ESP connected via USB the first time to setup the device with the OTA firmware and configure WiFi.
 

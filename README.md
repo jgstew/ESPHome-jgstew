@@ -46,4 +46,4 @@ wifi:
 
 ## ESPHome Integration
 
-Once you have at least 1 device configured, the [ESPHome Integration](https://www.home-assistant.io/integrations/esphome/) should be auto discovered as needed and able to be added in Home Assistant.
+Once you have at least 1 device configured, the [ESPHome Integration](https://www.home-assistant.io/integrations/esphome/) should be auto discovered as needed and able to be added in Home Assistant as a discovered device.

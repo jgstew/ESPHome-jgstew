@@ -1,0 +1,64 @@
+substitutions:
+  name: m5stack-atom-lite-
+  friendly_name: Bluetooth Proxy m5stack
+packages:
+  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/m5stack/m5stack-atom-lite.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: true
+  friendly_name: ${friendly_name}
+
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "btproxy_hotspot"
+    password: ""
+
+logger:
+
+captive_portal:
+
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Uptime
+    update_interval: 60s
+
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: WiFi Signal
+    update_interval: 60s
+    entity_category: DIAGNOSTIC
+
+  # internal cpu temp?
+  - platform: internal_temperature
+    name: ESP Temperature
+    unit_of_measurement: °C
+    device_class: TEMPERATURE
+    update_interval: 60s
+    entity_category: DIAGNOSTIC
+    accuracy_decimals: 0
+
+text_sensor:
+  - platform: version
+    name: ESPHome Version
+    entity_category: DIAGNOSTIC
+  - platform: wifi_info
+    ip_address:
+      name: IP
+    ssid:
+      name: SSID
+    bssid:
+      name: BSSID
+
+switch:
+  # Allow forced-reboot from HomeAssistant
+  - platform: restart
+    name: "${name} Restart"

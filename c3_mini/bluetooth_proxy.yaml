@@ -96,8 +96,7 @@ light:
     internal: True
     restore_mode: ALWAYS_OFF
 
-# dual purpose as BLE proxy / tracker:
-# this might be a bad idea due to the motion sensor also using BLE.
+# use as BLE proxy / tracker:
 # https://github.com/esphome/bluetooth-proxies/blob/0b53ab1ee78574c3edc9a3f6868095cdbadf5bc2/esp32-generic/esp32-generic-c3.yaml#L25-L33
 esp32_ble_tracker:
   scan_parameters:

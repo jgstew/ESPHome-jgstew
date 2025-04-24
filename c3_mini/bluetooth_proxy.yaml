@@ -1,0 +1,107 @@
+substitutions:
+  name: esphome-c3mini-
+  friendly_name: Bluetooth Proxy
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  min_version: 2024.11.0
+  name_add_mac_suffix: true
+  platformio_options:
+    board_build.flash_mode: dio
+    board_build.f_cpu: 80000000L
+
+# https://github.com/FriedCheese2006/HomeAssistant/blob/main/ESPHome/ESP32_Micro_Radar/ESP32_C3/ESP32_C3Mini_LD2410C.yaml
+esp32:
+  board: lolin_c3_mini
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+# Allow Over-The-Air updates
+ota:
+- platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  power_save_mode: LIGHT
+  # manual_ip:
+    # Set this to the IP of the ESP
+    # static_ip: 10.0.7.204
+    # Set this to the IP address of the router. Often ends with .1
+    # gateway: 10.0.7.1
+    # The subnet of the network. 255.255.255.0 works for most home networks.
+    # subnet: 255.255.255.0
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "btproxy_hotspot"
+    password: ""
+
+captive_portal:
+
+sensor:
+  # Uptime sensor.
+  - platform: uptime
+    name: Uptime
+    update_interval: 60s
+
+  # WiFi Signal sensor.
+  - platform: wifi_signal
+    name: WiFi Signal
+    update_interval: 60s
+    entity_category: DIAGNOSTIC
+
+  # internal cpu temp?
+  - platform: internal_temperature
+    name: ESP Temperature
+    unit_of_measurement: °C
+    device_class: TEMPERATURE
+    update_interval: 60s
+    entity_category: DIAGNOSTIC
+
+text_sensor:
+  - platform: version
+    name: ESPHome Version
+    entity_category: DIAGNOSTIC
+  - platform: wifi_info
+    ip_address:
+      name: IP
+    ssid:
+      name: SSID
+    bssid:
+      name: BSSID
+
+switch:
+  # Allow forced-reboot from HomeAssistant
+  - platform: restart
+    icon: mdi:power-cycle
+    name: "${name} Restart"
+
+light:
+  - platform: status_led
+    name: sys_status
+    pin: 
+      number: GPIO8
+      inverted: True
+    internal: True
+    restore_mode: ALWAYS_OFF
+
+# dual purpose as BLE proxy / tracker:
+# this might be a bad idea due to the motion sensor also using BLE.
+# https://github.com/esphome/bluetooth-proxies/blob/0b53ab1ee78574c3edc9a3f6868095cdbadf5bc2/esp32-generic/esp32-generic-c3.yaml#L25-L33
+esp32_ble_tracker:
+  scan_parameters:
+    # We currently use the defaults to ensure Bluetooth
+    # can co-exist with WiFi In the future we may be able to
+    # enable the built-in coexistence logic in ESP-IDF
+    active: true
+
+bluetooth_proxy:
+  active: true

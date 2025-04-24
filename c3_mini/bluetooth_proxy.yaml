@@ -9,6 +9,7 @@ esphome:
   friendly_name: ${friendly_name}
   min_version: 2024.11.0
   name_add_mac_suffix: true
+  # Don't know what these platformio_options do, not sure it is required:
   platformio_options:
     board_build.flash_mode: dio
     board_build.f_cpu: 80000000L
